@@ -41,4 +41,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Setting Mutator 
+     * When any user will save and name is prem than _user will automaticall append in it
+     * Its called Mutator or setter
+     */
+    public function setNameAttribute($value){
+        $this->attributes['name'] = $value.'_user';
+    }
+    /**
+    * Setting up Accessor 
+    * When any user will save and name is prem than _user will automaticall append in it
+    * Its called Accessor or setter
+    */
+    public function getNameAttribute($value){
+        return $normalUserDefinedName = str_replace("_user","",$value);
+    }
 }
