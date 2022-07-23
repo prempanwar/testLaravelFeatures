@@ -31,10 +31,10 @@ class ProductController extends Controller
     public function index()
     {
         // Calling without scope, we need to add withoutGlobalScope method and give name of scope
-        $products = Product::withoutGlobalScope('product')->latest()->paginate(5);
+        //$products = Product::withoutGlobalScope('product')->latest()->paginate(5);
 
-        // In the product table global scope is called
-        //$products = Product::latest()->paginate(5);
+        // In the product table global scope is called so only data going to fetch that is mentioned in the globap scope
+        $products = Product::latest()->paginate(5);
         return view('products.index',compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
